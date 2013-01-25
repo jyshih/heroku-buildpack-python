@@ -37,8 +37,8 @@ fi
 export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
 export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
 export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
-export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
-export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
+export LIBRARY_PATH=$(pwd)/vendor/lib::$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
+export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 
 echo "npscipy1 BLAS $BLAS"
 
@@ -61,6 +61,7 @@ fi
 echo "npscipy2 BLAS $BLAS"
 if [ -d "vendor/lib/atlas-base" ]; then
   echo "npscipy2 BLAS dir EXISTS!!!!"
+  echo "npscipy2 BLAS $(ls)"
 else
   echo "npscipy2 BLAS dir DOES NOT exists"
 fi
