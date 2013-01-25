@@ -147,7 +147,7 @@ set -e
 source $BIN_DIR/steps/pylibmc
 
 # Install numpy / scipy
-source $BIN_DIR/steps/pylibmc
+source $BIN_DIR/steps/npscipy
 
 
 # Install Mercurial if it appears to be required.
