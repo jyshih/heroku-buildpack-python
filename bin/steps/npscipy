@@ -59,6 +59,11 @@ else
 fi
 
 echo "npscipy2 BLAS $BLAS"
+if [ -d "vendor/lib/atlas-base" ]; then
+  echo "npscipy2 BLAS dir EXISTS!!!!"
+else
+  echo "npscipy2 BLAS dir DOES NOT exists"
+fi
 # puts-step "Installing Python OpenOpt Suite $ROOT_DIR"
 # cd $ROOT_DIR/vendor/oosuite/
 # python install_all.py 
