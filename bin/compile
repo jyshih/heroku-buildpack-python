@@ -150,7 +150,7 @@ source $BIN_DIR/steps/pylibmc
 source $BIN_DIR/steps/npscipy
 
 # Install python openopt
-# source $BIN_DIR/steps/openopt
+source $BIN_DIR/steps/openopt
 
 
 # Install Mercurial if it appears to be required.

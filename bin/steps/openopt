@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+
+echo "openopt BLAS $BLAS"
+echo "openopt ROOT_DIR $ROOT_DIR"
+echo "openopt WORKING_DIR $WORKING_DIR" 
+
 puts-step "Installing Python OpenOpt Suite"
 cd $ROOT_DIR/vendor/oosuite/
 python install_all.py 

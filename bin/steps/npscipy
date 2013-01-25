@@ -40,6 +40,8 @@ export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
 export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 
+echo "npscipy1 BLAS $BLAS"
+
 if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
   echo "-----> Using cached numpy."
 else
@@ -56,6 +58,7 @@ else
   cp -r venv/lib/python2.7/site-packages/scipy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
 fi
 
+echo "npscipy2 BLAS $BLAS"
 # puts-step "Installing Python OpenOpt Suite $ROOT_DIR"
 # cd $ROOT_DIR/vendor/oosuite/
 # python install_all.py 
