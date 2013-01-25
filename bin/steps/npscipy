@@ -45,6 +45,7 @@ if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
 else
   echo "-----> Creating/downloading numpy bdist."
   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
+  cp venv/lib/python2.7/site-packages/numpy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
 fi
 
 if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
@@ -52,6 +53,7 @@ if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
 else
   echo "-----> Creating/downloading scipy bdist."
   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
+  cp venv/lib/python2.7/site-packages/numpy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
 fi
 
 if [ -d ${VENDORED_GIT_NAME} ]; then
