@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: SpaceFuncs
+Version: 0.43
+Summary: A python module for 2D, 3D, ND space objects modelling and optimization
+Home-page: ('http://openopt.org',)
+Author: ('Dmitrey Kroshko',)
+Author-email: ('dmitrey-at-openopt-dot-org',)
+License: new BSD
+Download-URL: http://openopt.org/images/4/4e/SpaceFuncs.zip
+Description: 
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Topic :: Scientific/Engineering
