@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+puts-step "Installing Python OpenOpt Suite"
+cd $ROOT_DIR/vendor/oosuite/
+python install_all.py &> /dev/null
+cd $WORKING_DIR
+
