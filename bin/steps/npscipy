@@ -46,6 +46,7 @@ if [ -d ${VENDORED_GIT_NAME} ]; then
 fi
 cd ..
 
+echo "PYTHON_SITE_PACAKAGES: $PYTHON_SITE_PACAKAGES"
 if [ -d "$PYTHON_SITE_PACKAGES/numpy" ]; then
   echo "-----> Using cached numpy."
 else
