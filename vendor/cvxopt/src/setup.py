@@ -2,7 +2,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # Modifiy this if BLAS and LAPACK libraries are not in /usr/lib.
-BLAS_LIB_DIR = '/usr/lib'
+BLAS_LIB_DIR = '/app/.heroku/vendor/lib/atlas-base/atlas'
 
 # Default names of BLAS and LAPACK libraries
 BLAS_LIB = ['blas']
