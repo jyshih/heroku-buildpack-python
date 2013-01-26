@@ -39,7 +39,7 @@ export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
 export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
 export LIBRARY_PATH=$(pwd)/vendor/lib::$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
-export PYTHON_SITE_PACKAGES="$WORKING_DIR/.heroku/python/lib/python2.7/site-packages"
+export PYTHON_SITE_PACKAGES=/app/.heroku/python/lib/python2.7/site-packages
 
 if [ -d ${VENDORED_GIT_NAME} ]; then
   rm -rf ${VENDORED_GIT_NAME}
