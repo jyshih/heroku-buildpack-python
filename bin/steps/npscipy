@@ -40,31 +40,31 @@ export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
 export LIBRARY_PATH=$(pwd)/vendor/lib::$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 
-echo "npscipy1 BLAS $BLAS"
-
-if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
-  echo "-----> Using cached numpy."
-else
-  echo "-----> Creating/downloading numpy bdist."
-  tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
-  cp -r venv/lib/python2.7/site-packages/numpy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
-fi
-
-if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
-  echo "-----> Using cached scipy."
-else
-  echo "-----> Creating/downloading scipy bdist."
-  tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
-  cp -r venv/lib/python2.7/site-packages/scipy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
-fi
-
-echo "npscipy2 BLAS $BLAS"
-if [ -d "vendor/lib/atlas-base" ]; then
-  echo "npscipy2 BLAS dir EXISTS!!!!"
-  echo "npscipy2 BLAS $(ls)"
-else
-  echo "npscipy2 BLAS dir DOES NOT exists"
-fi
+# echo "npscipy1 BLAS $BLAS"
+# 
+# if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
+#   echo "-----> Using cached numpy."
+# else
+#   echo "-----> Creating/downloading numpy bdist."
+#   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
+#   cp -r venv/lib/python2.7/site-packages/numpy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
+# fi
+# 
+# if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
+#   echo "-----> Using cached scipy."
+# else
+#   echo "-----> Creating/downloading scipy bdist."
+#   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
+#   cp -r venv/lib/python2.7/site-packages/scipy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
+# fi
+# 
+# echo "npscipy2 BLAS $BLAS"
+# if [ -d "vendor/lib/atlas-base" ]; then
+#   echo "npscipy2 BLAS dir EXISTS!!!!"
+#   echo "npscipy2 BLAS $(ls)"
+# else
+#   echo "npscipy2 BLAS dir DOES NOT exists"
+# fi
 # puts-step "Installing Python OpenOpt Suite $ROOT_DIR"
 # cd $ROOT_DIR/vendor/oosuite/
 # python install_all.py 
