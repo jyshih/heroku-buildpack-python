@@ -39,17 +39,22 @@ export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
 export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
 export LIBRARY_PATH=$(pwd)/vendor/lib::$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
+export PYTHON_SITE_PACKAGES=$WORKING_DIR/.heroku/python/lib/python2.7/site-packages
 
-# echo "npscipy1 BLAS $BLAS"
-# 
-# if [ -d "venv/lib/python2.7/site-packages/numpy" ]; then
-#   echo "-----> Using cached numpy."
-# else
-#   echo "-----> Creating/downloading numpy bdist."
-#   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_NUMPY}.tar.gz > /dev/null
-#   cp -r venv/lib/python2.7/site-packages/numpy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
-# fi
-# 
+if [ -d ${VENDORED_GIT_NAME} ]; then
+  rm -rf ${VENDORED_GIT_NAME}
+fi
+cd ..
+
+if [ -d "$PYTHON_SITE_PACKAGES/numpy" ]; then
+  echo "-----> Using cached numpy."
+else
+puts-step "Installing Python Numpy"
+  cd $ROOT_DIR/vendor/numpy/
+  python setup.py install
+  cd $WORKING_DIR
+fi
+
 # if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
 #   echo "-----> Using cached scipy."
 # else
@@ -70,10 +75,6 @@ export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/ven
 # python install_all.py 
 # cd $WORKING_DIR
 
-if [ -d ${VENDORED_GIT_NAME} ]; then
-  rm -rf ${VENDORED_GIT_NAME}
-fi
-cd ..
 
 
 
