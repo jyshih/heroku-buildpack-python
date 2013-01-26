@@ -46,12 +46,27 @@ if [ -d ${VENDORED_GIT_NAME} ]; then
 fi
 cd ..
 
+echo "openopt BLAS $BLAS"
+echo "openopt ROOT_DIR $ROOT_DIR"
+echo "openopt WORKING_DIR $WORKING_DIR" 
+
 echo "PYTHON_SITE_PACKAGES: $PYTHON_SITE_PACKAGES"
 if [ -d "$PYTHON_SITE_PACKAGES/numpy" ]; then
-  echo "-----> Using cached numpy."
+  echo "-----> Using cached numpy & openopt."
 else
-  puts-step "Installing Python Numpy"
+  puts-step "Installing Python Numpy & OpenOpt"
   cd $ROOT_DIR/vendor/numpy/
+  python setup.py install
+  cd $ROOT_DIR/vendor/oosuite/
+  python install_all.py 
+  cd $WORKING_DIR
+fi
+
+if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
+  echo "-----> Using cached cvxopt solver"
+else
+  puts-step "Installing Python OpenOpt CVXOPT Solver"
+  cd $ROOT_DIR/vendor/cvxopt/src/
   python setup.py install
   cd $WORKING_DIR
 fi
