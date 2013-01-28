@@ -27,17 +27,21 @@ echo "-----> heroku contents: $(ls)"
 if [ -d "vendor/lib/atlas-base" ]; then
   echo "-----> Using cached binaries."
 else
-  echo "-----> Creating/downloading binaries."
+  echo "-----> Creating binaries."
   # Download and extract everything into target vendor directory.
-  git clone ${VENDORED_GIT_REPO} > /dev/null
+  mkdir npscipy-dependencies
+  cp $ROOT_DIR/vendor/numscipy_dependencies.tar.gz npscipy-dependencies/numscipy_dependencies.tar.gz
+  # git clone ${VENDORED_GIT_REPO} > /dev/null
   echo "-----> heroku contents: $(ls)"
   echo "-----> heroku binaries contents: $(ls ${VENDORED_GIT_NAME})"
-  tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_BINARIES}.tar.gz > /dev/null
+  tar -xvf npscipy-dependencies/numscipy_dependencies.tar.gz 
+  rm -r npscipy-dependencies/
 fi
+
 export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
 export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
 export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
-export LIBRARY_PATH=$(pwd)/vendor/lib::$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
+export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vender/lib/atlas-base:$(pwd)/vender/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export PYTHON_SITE_PACKAGES=/app/.heroku/python/lib/python2.7/site-packages
 
@@ -70,7 +74,6 @@ else
   echo "VENDOR_PATH: $ROOT_DIR/vendor/ $(ls)"
   tar -xvf scipy.tar.gz  
   cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES
-  rm -r venv/lib/python2.7/site-packages/scipy/
   cd $WORKING_DIR
 fi
 
