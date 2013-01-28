@@ -66,8 +66,7 @@ if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
   echo "-----> Using cached scipy"
 else
   puts-step "Installing Python SciPy"
-  cd $ROOT_DIR/vendor/scipy/
-  python setup.py install
+  cd $ROOT_DIR/vendor/
   tar -xvf scipy.tar.gz > /dev/null
   cp -r /app/.heroku/venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES > /dev/null
   rm -r /app/.heroku/venv/lib/python2.7/site-packages/scipy/
