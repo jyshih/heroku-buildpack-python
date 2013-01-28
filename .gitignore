@@ -5,6 +5,8 @@ site
 *.so
 
 # Packages
+*.h
+*.c
 *.egg
 *.egg-info
 dist
