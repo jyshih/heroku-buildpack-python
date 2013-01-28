@@ -69,8 +69,8 @@ else
   cd $ROOT_DIR/vendor/
   echo "VENDOR_PATH: $ROOT_DIR/vendor/ $(ls)"
   tar -xvf scipy.tar.gz  
-  cp -r /app/.heroku/venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES
-  rm -r /app/.heroku/venv/lib/python2.7/site-packages/scipy/
+  cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES
+  rm -r venv/lib/python2.7/site-packages/scipy/
   cd $WORKING_DIR
 fi
 
