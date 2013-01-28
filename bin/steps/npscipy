@@ -49,15 +49,15 @@ else
 fi
 
 # install SciPy
-# if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
-#   puts-step "Using cached scipy"
-# else
-#   puts-step "Installing Python SciPy"
-#   cd $ROOT_DIR/vendor/
-#   tar -xvf scipy.tar.gz &> /dev/null 
-#   cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES &> /dev/null
-#   cd $WORKING_DIR
-# fi
+if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
+  puts-step "Using cached scipy"
+else
+  puts-step "Installing Python SciPy"
+  cd $ROOT_DIR/vendor/
+  tar -xvf scipy.tar.gz &> /dev/null 
+  cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES &> /dev/null
+  cd $WORKING_DIR
+fi
 
 if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
   puts-step "Using cached cvxopt solver"
