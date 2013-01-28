@@ -19,10 +19,10 @@ if [ -d "vendor/lib/atlas-base" ]; then
 else
   # Download and extract everything into target vendor directory.
   puts-step "Creating numscipy dependency binaries."
-  mkdir npscipy-dependencies
-  cp $ROOT_DIR/vendor/numscipy_dependencies.tar.gz npscipy-dependencies/numscipy_dependencies.tar.gz
-  tar -xvf npscipy-dependencies/numscipy_dependencies.tar.gz 
-  rm -r npscipy-dependencies/
+  mkdir npscipy-dependencies &> /dev/null
+  cp $ROOT_DIR/vendor/numscipy_dependencies.tar.gz npscipy-dependencies/numscipy_dependencies.tar.gz &> /dev/null
+  tar -xvf npscipy-dependencies/numscipy_dependencies.tar.gz &> /dev/null 
+  rm -r npscipy-dependencies/ &> /dev/null
 fi
 
 # set BLAS/LAPACK/ATLAS
@@ -42,9 +42,9 @@ if [ -d "$PYTHON_SITE_PACKAGES/numpy" ]; then
 else
   puts-step "Installing Python Numpy & OpenOpt"
   cd $ROOT_DIR/vendor/numpy/
-  python setup.py install
+  python setup.py install &> /dev/null
   cd $ROOT_DIR/vendor/oosuite/
-  python install_all.py 
+  python install_all.py &> /dev/null 
   cd $WORKING_DIR
 fi
 
@@ -54,9 +54,8 @@ if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
 else
   puts-step "Installing Python SciPy"
   cd $ROOT_DIR/vendor/
-  echo "VENDOR_PATH: $ROOT_DIR/vendor/ $(ls)"
-  tar -xvf scipy.tar.gz  
-  cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES
+  tar -xvf scipy.tar.gz &> /dev/null 
+  cp -r venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES &> /dev/null
   cd $WORKING_DIR
 fi
 
@@ -65,7 +64,7 @@ if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
 else
   puts-step "Installing Python OpenOpt CVXOPT Solver"
   cd $ROOT_DIR/vendor/cvxopt/src/
-  python setup.py install
+  python setup.py install &> /dev/null
   cd $WORKING_DIR
 fi
 
