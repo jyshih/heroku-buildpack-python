@@ -6,38 +6,26 @@
 # 
 # A [buildpack](http://devcenter.heroku.com/articles/buildpacks) is an 
 # adapter between a Python application and Heroku's runtime.
-#
-# This script is invoked by [`bin/compile`](/).
-VENDORED_GIT_NAME="npscipy-binaries"
-VENDORED_GIT_REPO="git://github.com/rfadams/${VENDORED_GIT_NAME}.git"
-# The location of the pre-compiled atlas/lapack/blas/gfortran binaries.
-VENDORED_BINARIES="npscipy"
-# the location of the bdist of numpy
-VENDORED_NUMPY="numpy-1.6.1"
-# the location of the bdist of scipy
-VENDORED_SCIPY="scipy-0.10.1"
 
 # If numpy or scipy exists within requirements.txt then use binaries.
-echo "-----> Bootstrapping numpy/scipy prebuilt binaries."
-cd .heroku
-echo "-----> heroku contents: $(ls)"
+puts-step "Bootstrapping numpy/scipy prebuilt binaries."
 
-## check whether this has happened already
-## set BLAS/LAPACK/ATLAS
+# Change into /app/.heroku path 
+cd .heroku
+
+# check whether this has happened already
 if [ -d "vendor/lib/atlas-base" ]; then
-  echo "-----> Using cached binaries."
+  puts-step "Using cached binaries."
 else
-  echo "-----> Creating binaries."
   # Download and extract everything into target vendor directory.
+  puts-step "Creating numscipy dependency binaries."
   mkdir npscipy-dependencies
   cp $ROOT_DIR/vendor/numscipy_dependencies.tar.gz npscipy-dependencies/numscipy_dependencies.tar.gz
-  # git clone ${VENDORED_GIT_REPO} > /dev/null
-  echo "-----> heroku contents: $(ls)"
-  echo "-----> heroku binaries contents: $(ls ${VENDORED_GIT_NAME})"
   tar -xvf npscipy-dependencies/numscipy_dependencies.tar.gz 
   rm -r npscipy-dependencies/
 fi
 
+# set BLAS/LAPACK/ATLAS
 export BLAS=$(pwd)/vendor/lib/atlas-base/atlas/libblas.a
 export LAPACK=$(pwd)/vendor/lib/atlas-base/atlas/liblapack.a
 export ATLAS=$(pwd)/vendor/lib/atlas-base/libatlas.a
@@ -45,18 +33,12 @@ export LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vender/lib/atlas-base:$(pwd)/vender
 export LD_LIBRARY_PATH=$(pwd)/vendor/lib:$(pwd)/vendor/lib/atlas-base:$(pwd)/vendor/lib/atlas-base/atlas:$(pwd)/lib/atlas-base:$(pwd)/lib/atlas-base/atlas
 export PYTHON_SITE_PACKAGES=/app/.heroku/python/lib/python2.7/site-packages
 
-if [ -d ${VENDORED_GIT_NAME} ]; then
-  rm -rf ${VENDORED_GIT_NAME}
-fi
+# Exit back to root
 cd ..
 
-echo "openopt BLAS $BLAS"
-echo "openopt ROOT_DIR $ROOT_DIR"
-echo "openopt WORKING_DIR $WORKING_DIR" 
-
-echo "PYTHON_SITE_PACKAGES: $PYTHON_SITE_PACKAGES"
+# install Numpy & OpenOpt
 if [ -d "$PYTHON_SITE_PACKAGES/numpy" ]; then
-  echo "-----> Using cached numpy & openopt."
+  puts-step "Using cached numpy & openopt."
 else
   puts-step "Installing Python Numpy & OpenOpt"
   cd $ROOT_DIR/vendor/numpy/
@@ -66,8 +48,9 @@ else
   cd $WORKING_DIR
 fi
 
+# install SciPy
 if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
-  echo "-----> Using cached scipy"
+  puts-step "Using cached scipy"
 else
   puts-step "Installing Python SciPy"
   cd $ROOT_DIR/vendor/
@@ -78,34 +61,11 @@ else
 fi
 
 if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
-  echo "-----> Using cached cvxopt solver"
+  puts-step "Using cached cvxopt solver"
 else
   puts-step "Installing Python OpenOpt CVXOPT Solver"
   cd $ROOT_DIR/vendor/cvxopt/src/
   python setup.py install
   cd $WORKING_DIR
 fi
-
-# if [ -d "venv/lib/python2.7/site-packages/scipy" ]; then
-#   echo "-----> Using cached scipy."
-# else
-#   echo "-----> Creating/downloading scipy bdist."
-#   tar -xvf ${VENDORED_GIT_NAME}/${VENDORED_SCIPY}.tar.gz > /dev/null
-#   cp -r venv/lib/python2.7/site-packages/scipy* /app/.heroku/python/lib/python2.7/site-packages/ > /dev/null
-# fi
-# 
-# echo "npscipy2 BLAS $BLAS"
-# if [ -d "vendor/lib/atlas-base" ]; then
-#   echo "npscipy2 BLAS dir EXISTS!!!!"
-#   echo "npscipy2 BLAS $(ls)"
-# else
-#   echo "npscipy2 BLAS dir DOES NOT exists"
-# fi
-# puts-step "Installing Python OpenOpt Suite $ROOT_DIR"
-# cd $ROOT_DIR/vendor/oosuite/
-# python install_all.py 
-# cd $WORKING_DIR
-
-
-
 
