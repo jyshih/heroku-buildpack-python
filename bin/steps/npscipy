@@ -67,8 +67,9 @@ if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
 else
   puts-step "Installing Python SciPy"
   cd $ROOT_DIR/vendor/
-  tar -xvf scipy.tar.gz > /dev/null
-  cp -r /app/.heroku/venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES > /dev/null
+  echo "VENDOR_PATH: $ROOT_DIR/vendor/ $(ls)"
+  tar -xvf scipy.tar.gz  
+  cp -r /app/.heroku/venv/lib/python2.7/site-packages/scipy* $PYTHON_SITE_PACKAGES
   rm -r /app/.heroku/venv/lib/python2.7/site-packages/scipy/
   cd $WORKING_DIR
 fi
