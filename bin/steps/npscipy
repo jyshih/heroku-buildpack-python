@@ -62,6 +62,15 @@ else
   cd $WORKING_DIR
 fi
 
+if [ -d "$PYTHON_SITE_PACKAGES/scipy" ]; then
+  echo "-----> Using cached scipy"
+else
+  puts-step "Installing Python SciPy"
+  cd $ROOT_DIR/vendor/scipy/
+  python setup.py install
+  cd $WORKING_DIR
+fi
+
 if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
   echo "-----> Using cached cvxopt solver"
 else
