@@ -8,7 +8,7 @@
 # adapter between a Python application and Heroku's runtime.
 
 # If numpy or scipy exists within requirements.txt then use binaries.
-puts-step "Bootstrapping numpy/scipy prebuilt binaries."
+puts-step "Bootstrapping numpy/scipy dependencies and install scripts"
 
 # Change into /app/.heroku path 
 cd .heroku
