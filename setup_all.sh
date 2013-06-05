@@ -9,7 +9,7 @@ cd ..
 pip install scipy
 
 cd oosuite
-python setup.py instal
+python setup.py install
 cd ..
 
 cd cvxopt/src/
