@@ -65,12 +65,10 @@ if [ -d "$PYTHON_SITE_PACKAGES/glpk" ]; then
 else
   puts-step "Installing Python glpk"
   cd $ROOT_DIR/vendor/glpk/
-  puts-step "Unpacking glpk tarball"
-  tar -xvf glpk-4.44.tar.gz
+  tar -xvf glpk-4.44.tar.gz &> /dev/null
   cd glpk-4.44
-  ./configure &> /dev/null
-  make &> /dev/null
-  ls -lF $ROOT_DIR/usr/local/lib/libglpk.a
+  ./configure
+  make
   cd $WORKING_DIR
 fi
 
