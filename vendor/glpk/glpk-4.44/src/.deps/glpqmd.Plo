@@ -1,3 +1,0 @@
-glpqmd.lo: glpqmd.c glpqmd.h
-
-glpqmd.h:
