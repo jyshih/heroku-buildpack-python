@@ -1,4 +1,4 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: DerApproximator
 Version: 0.43
 Summary: A python module for finite-differences derivatives approximation
