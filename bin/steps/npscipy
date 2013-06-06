@@ -65,10 +65,12 @@ if [ -d "$PYTHON_SITE_PACKAGES/glpk" ]; then
 else
   puts-step "Installing Python glpk"
   cd $ROOT_DIR/vendor/glpk/
+  puts-step "Unpacking glpk tarball"
   tar -xvf glpk-4.44.tar.gz
   cd glpk-4.44
   ./configure &> /dev/null
   make &> /dev/null
+  ls -lF $ROOT_DIR/usr/local/lib/libglpk.a
   cd $WORKING_DIR
 fi
 
@@ -76,7 +78,7 @@ fi
 if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
   puts-step "Using cached cvxopt solver"
 else
-  puts-step "Installing Python OpenOpt CVXOPT Solver"
+  puts-step "Installing Python cvxopt solver"
   cd $ROOT_DIR/vendor/cvxopt/src/
   python setup.py install &> /dev/null
   cd $WORKING_DIR
