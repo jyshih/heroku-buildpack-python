@@ -69,6 +69,7 @@ else
   cd glpk-4.44
   ./configure
   make
+  make check
   cd $WORKING_DIR
 fi
 
