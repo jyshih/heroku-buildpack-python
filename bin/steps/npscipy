@@ -59,22 +59,24 @@ else
   cd $WORKING_DIR
 fi
 
+# install GLPK
 if [ -d "$PYTHON_SITE_PACKAGES/glpk" ]; then
   puts-step "Using cached glpk"
 else
-  puts-setp "Installing Python glpk"
+  puts-step "Installing Python glpk"
   cd $ROOT_DIR/vendor/glpk/glpk-4.44/
   ./configure &> /dev/null
   make &> /dev/null
   cd $WORKING_DIR
 fi
 
-if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
-  puts-step "Using cached cvxopt solver"
-else
+# install CVXOPT
+#if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
+#  puts-step "Using cached cvxopt solver"
+#else
   puts-step "Installing Python OpenOpt CVXOPT Solver"
   cd $ROOT_DIR/vendor/cvxopt/src/
   python setup.py install &> /dev/null
   cd $WORKING_DIR
-fi
+#fi
 
