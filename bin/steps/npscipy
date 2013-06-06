@@ -74,12 +74,12 @@ else
 fi
 
 # install CVXOPT
-if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
-  puts-step "Using cached cvxopt solver"
-else
-  puts-step "Installing Python cvxopt solver"
-  cd $ROOT_DIR/vendor/cvxopt/src/
-  python setup.py install
-  cd $WORKING_DIR
-fi
+#if [ -d "$PYTHON_SITE_PACKAGES/cvxopt" ]; then
+#  puts-step "Using cached cvxopt solver"
+#else
+#  puts-step "Installing Python cvxopt solver"
+#  cd $ROOT_DIR/vendor/cvxopt/src/
+#  python setup.py install
+#  cd $WORKING_DIR
+#fi
 
