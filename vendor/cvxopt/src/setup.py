@@ -36,10 +36,10 @@ FFTW_INC_DIR = '/usr/include'
 BUILD_GLPK = 1 
 
 # Directory containing libglpk (used only when BUILD_GLPK = 1).
-GLPK_LIB_DIR = '/usr/local/lib'
+GLPK_LIB_DIR = '.heroku/vendor/lib'
 
 # Directory containing glpk.h (used only when BUILD_GLPK = 1).
-GLPK_INC_DIR = '/usr/local/include'
+GLPK_INC_DIR = '.heroku/vendor/include'
 
 # Set to 1 if you are installing the DSDP module.
 BUILD_DSDP = 0
