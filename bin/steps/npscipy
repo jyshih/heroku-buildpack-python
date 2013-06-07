@@ -67,6 +67,7 @@ else
   cd $ROOT_DIR/vendor/glpk/glpk-4.44
   # tar -xvf glpk-4.44.tar.gz &> /dev/null
   # cd glpk-4.44
+  mkdir -p /app/.heroku/vendor/
   ./configure --prefix /app/.heroku/vendor/ &> /dev/null
   make &> /dev/null
   make check
