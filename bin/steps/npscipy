@@ -64,9 +64,9 @@ if [ -d "$PYTHON_SITE_PACKAGES/glpk" ]; then
   puts-step "Using cached glpk"
 else
   puts-step "Installing Python glpk"
-  cd $ROOT_DIR/vendor/glpk/glpk-4.44
-  # tar -xvf glpk-4.44.tar.gz &> /dev/null
-  # cd glpk-4.44
+  cd $ROOT_DIR/vendor/glpk/
+  tar -xvf glpk-4.44.tar.gz &> /dev/null
+  cd glpk-4.44
   mkdir -p /app/.heroku/vendor/
   ./configure --prefix /app/.heroku/vendor/
   make
