@@ -2,21 +2,23 @@
 
 cd vendor
 
-cd numpy
-python setup.py install
-cd ..
+pip install numpy
+#cd numpy
+#python setup.py install
+#cd ..
 
-pip install scipy
+#pip install scipy
 
-cd oosuite
-python setup.py install
-cd ..
+pip install openopt
+# cd oosuite
+# python setup.py install
+# cd ..
 
 cd glpk
 tar -xvf glpk-4.44.tar.gz
 cd glpk-4.44
 ./configure
-make
+make install
 cd ../..
 
 cd cvxopt/src/
