@@ -2,10 +2,10 @@
 
 cd vendor
 
-pip install numpy
-#cd numpy
-#python setup.py install
-#cd ..
+#pip install numpy
+cd numpy
+python setup.py install
+cd ..
 
 #pip install scipy
 
